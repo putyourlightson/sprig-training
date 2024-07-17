@@ -1,0 +1,138 @@
+{% import '_macros.twig' as macros %}
+
+{% set section = section ?? '' %}
+{% set search = search ?? '' %}
+{% set topics = (topics ?? '') ? topics|split(','): [] %}
+{% set offset = offset ?? 0 %}
+{% set limit = 12 %}
+
+{% set allowedSections = [
+    'lectureReports',
+    'literatureReviews',
+] %}
+
+{% set sections = section in allowedSections ? section : allowedSections %}
+{% set topicEntryIds = craft.entries.section(sections).ids() %}
+{% set topicOptions = craft.categories.group('topics').relatedTo(topicEntryIds).level(1).all() %}
+
+{% set entryQuery = craft.entries
+    .section(sections)
+    .search(search)
+    .topics(topics is not empty ? topics : null)
+    .orderBy('lastUpdated desc, postDate desc')
+    .offset(offset)
+    .limit(limit)
+%}
+
+{% set entries = entryQuery.all() %}
+
+<section s-indicator="this">
+    <div class="lg:hidden my-4 mt-0 lg:mt-4 space-y-3">
+        <div class="relative">
+            <label for="searchMobile" class="my-1 ml-4 text-xs uppercase">
+                Search
+            </label>
+            <svg class="absolute left-0 mt-3 ml-4 w-5 h-5 text-slate-400" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+            <svg class="htmx-indicator absolute top-0 right-0 animate-spin mt-2 mr-3 h-6 w-6 text-slate-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <input sprig s-replace="#results" s-trigger="keyup changed delay:400ms" s-on:keyup="htmx.find('#searchDesktop').value = this.value" id="searchMobile" name="search" value="{{ search }}" placeholder="Search terms" class="query w-full rounded-full px-4 pl-10 py-2 border-slate-500 border">
+        </div>
+        <div>
+            <label for="topic" class="my-1 ml-4 text-xs uppercase">
+                Topic
+            </label>
+            <select sprig id="topic" name="topics" class="w-full rounded-full px-4 border-slate-500">
+                <option value="">
+                    All articles
+                    ({{ craft.entries.section(sections).count() }})
+                </option>
+                {% for topicOption in topicOptions %}
+                    <option value="{{ topicOption.id }}" {{ topicOption.id in topics ? 'selected' }}>
+                        {{ topicOption.title }}
+                        ({{ craft.entries.section(sections).topics(topicOption.id).count() }})
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="lg:flex lg:space-x-4">
+        <div id="results" class="lg:flex flex-wrap lg:w-3/4">
+            {{ hiddenInput('topics', topics|join(',')) }}
+            <div class="error hidden bg-pink-700 text-white font-bold px-4 py-3 my-4 rounded w-full">
+                An unknown error occurred.
+            </div>
+            {{ include('_includes/articles.twig') }}
+            {% if entryQuery.count() > offset + entries|length %}
+                <article sprig s-trigger="revealed" s-val:offset="{{ offset + limit }}" s-select="article" s-target="this" s-swap="outerHTML" class="flex justify-center w-full lg:pr-4">
+                    <svg class="htmx-indicator animate-spin mt-2 mr-3 h-6 w-6 text-slate-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </article>
+            {% endif %}
+            {% if entries is empty %}
+                <div class="w-full text-center">
+                    <img
+                        {{ macros.srcset('/new/interface/img/not-found.png', [
+                            { width: 384, height: 255 },
+                        ]) }}
+                        src="/new/interface/img/not-found.png"
+                        alt="Not found"
+                        width="384"
+                        height="255"
+                        class="w-96 inline"
+                    >
+                    <h2 class="font-serif font-semibold text-2xl text-slate-900">
+                        No articles found!
+                    </h2>
+                    <p class="my-4">
+                        No articles were found for your search terms.
+                    </p>
+                    <button class="bg-pink-700 font-semibold text-white px-4 py-2 rounded-full">
+                        Restart
+                    </button>
+                </div>
+            {% endif %}
+        </div>
+        <div class="hidden lg:block w-1/4 pt-2">
+            <label for="searchDesktop" class="mb-1 ml-4 text-xs uppercase">
+                Search
+            </label>
+            <div class="relative">
+                <svg class="absolute left-0 mt-3 ml-4 w-5 h-5 text-slate-400" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+                <svg class="htmx-indicator absolute top-0 right-0 animate-spin mt-2 mr-3 h-6 w-6 text-slate-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <input sprig s-replace="#results" s-trigger="keyup changed delay:400ms" s-on:keyup="htmx.find('#searchMobile').value = this.value" id="searchDesktop" name="search" value="{{ search }}" placeholder="Search terms" class="w-full rounded-full px-4 pl-10 py-2 border-slate-500 border">
+            </div>
+            <div class="flex flex-col my-6">
+                <div class="flex pl-4 py-2 {{ topics is empty ? 'border-pink-700 border-l-4 font-bold' : 'border-l border-slate-500' }}">
+                    <a sprig s-val:topics="" href="" class="{{ topics is empty ? 'ml-[-3px]' }}">
+                        All articles
+                    </a>
+                    <div class="h-fit rounded-full ml-2 px-3 {{ topics is empty ? 'bg-amber-200 text-space-900' : 'bg-slate-300' }}">
+                        {{ craft.entries.section(sections).search(search).count() }}
+                    </div>
+                </div>
+                {% for topicOption in topicOptions %}
+                    <div class="flex pl-4 py-2 {{ topicOption.id in topics ? 'border-pink-700 border-l-4 font-bold' : 'border-l border-slate-500' }}">
+                        <a sprig s-val:topics="{{ topics|merge([topicOption.id])|join(',') }}" href="" class="{{ topicOption.id in topics ? 'ml-[-4px]' }}">
+                            {{ topicOption.title }}
+                        </a>
+                        <div class="h-fit rounded-full ml-2 px-3 {{ topicOption.id in topics ? 'bg-amber-200 text-slate-900' : 'bg-slate-300' }}">
+                            {{ craft.entries.section(sections).topics(topicOption.id).search(search).count() }}
+                        </div>
+                        {% if topicOption.id in topics %}
+                            <a sprig s-val:topics="{{ topics|filter(value => value != topicOption.id)|join(',') }}" title="Remove" class="h-fit rounded-full ml-1 px-2 bg-white cursor-pointer hover:no-underline">
+                                X
+                            </a>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

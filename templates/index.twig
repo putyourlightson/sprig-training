@@ -1,13 +1,17 @@
 {% extends '_layout.twig' %}
 
-{% block body %}
-    <div class="m-4 flex justify-center items-center">
-        <div class="mx-auto">
-                {{ sprig('_components/counter') }}
-            <div class="mt-3 flex align-start">
-                {{ sprig('_components/listing') }}
-            </div>
-        </div>
-    </div>
+{% set intro = craft.entries.section('intro').one() %}
+{% set description = intro.text|striptags|split('.')[0] ~ '.' %}
+
+{% block main %}
+
+    {{ sprig('_components/articles', { section: section ?? '' }) }}
+
 {% endblock %}
 
+{% js %}
+    htmx.on('htmx:responseError', function (event) {
+        console.log(event.detail);
+        htmx.removeClass('.error', 'hidden');
+    });
+{% endjs %}
