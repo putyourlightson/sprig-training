@@ -1,0 +1,83 @@
+{# @var cart \craft\commerce\elements\Order #}
+{% set cart = craft.commerce.carts.cart %}
+
+<section aria-labelledby="summary-heading" class="min-w-80">
+    <div class="mt-0 bg-gray-50 px-4 py-6 sm:p-6 lg:p-8 component">
+        <h2 id="summary-heading" class="text-lg font-bold text-gray-900">Order summary</h2>
+        <dl class="mt-6 space-y-4">
+            {# @var item \craft\commerce\models\LineItem #}
+            {% for item in cart.lineItems %}
+                {# @var purchasable \craft\commerce\elements\Purchasable #}
+                {% set purchasable = item.purchasable %}
+                {# @var product \craft\commerce\elements\Product #}
+                {% set product = purchasable.product %}
+                <div class="flex items-center justify-between">
+                    <div class="text-md text-gray-700 flex space-x-1">
+                        {% set image = product.image.one() %}
+                        {% if image %}
+                            <img src="{{ image.url }}" alt="{{ image.title }}" class="h-6 w-6 rounded-md object-cover object-center"/>
+                        {% endif %}
+                        <div>{{ product.title }}</div>
+                    </div>
+                    <div class="flex -mr-5 space-x-1">
+                        <div class="text-md font-medium text-gray-900">
+                            {{ item.totalAsCurrency }}
+                        </div>
+                        <button sprig s-method="post" s-action="commerce/cart/update-cart" s-val:line-items[{{ item.id }}][remove]="1">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4 text-gray-500 hover:text-red-600"><path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" /></svg>
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+                <dt class="text-md text-gray-700">Subtotal</dt>
+                <dd class="text-md font-medium text-gray-900">{{ cart.itemSubtotalAsCurrency }}</dd>
+            </div>
+            <div class="flex items-center justify-between">
+                <dt class="flex text-md text-gray-700 space-x-1">
+                    <span>Tax</span>
+                    <a title="Tax is charged at 20%." class="flex-shrink-0 text-gray-500 hover:text-gray-600">
+                        <svg class="size-5 mt-0.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+                        </svg>
+                    </a>
+                </dt>
+                <dd class="text-md font-medium text-gray-900">{{ cart.totalTaxAsCurrency }}</dd>
+            </div>
+            <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+                <dt class="text-base font-bold text-gray-900">Order total</dt>
+                <dd class="text-base font-bold text-gray-900">{{ cart.totalAsCurrency }}</dd>
+            </div>
+        </dl>
+        <div class="mt-6">
+            <button sprig id="checkout" class="w-full rounded-md border border-transparent bg-sky-700 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:ring-offset-2 focus:ring-offset-gray-50">Checkout</button>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{#{% do sprig.swapOob('#products', '_components/products') %}#}
+{#{% do sprig.swapOob('#cart', '_components/cart') %}#}
+{#{% if lineItems ?? false %}#}
+{#    {% do sprig.triggerRefresh('#products') %}#}
+{#    {% do sprig.triggerRefresh('#cart') %}#}
+{#{% endif %}#}

@@ -1,6 +1,4 @@
 columnSuffix: null
-contentColumnType: string
-fieldGroup: 326db6f6-0577-4166-a7f3-c64d1c0b1bc3 # Common
 handle: image
 instructions: null
 name: Image
@@ -24,6 +22,7 @@ settings:
   restrictedLocationSource: 'volume:63787053-c58d-42f3-af9c-632e7dc01f35' # Images
   restrictedLocationSubpath: null
   selectionLabel: null
+  showCardsInGrid: false
   showSiteMenu: true
   showUnpermittedFiles: false
   showUnpermittedVolumes: false

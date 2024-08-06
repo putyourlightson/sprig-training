@@ -1,3 +1,4 @@
+color: null
 fieldLayouts:
   b7f5b1e3-ed79-4985-a6b3-7e2e5cf83b9f:
     tabs:
@@ -12,6 +13,7 @@ fieldLayouts:
             disabled: false
             elementCondition: null
             id: null
+            includeInCards: false
             inputType: null
             instructions: null
             label: null
@@ -20,6 +22,7 @@ fieldLayouts:
             name: null
             orientation: null
             placeholder: null
+            providesThumbs: false
             readonly: false
             requirable: false
             size: null
@@ -34,8 +37,11 @@ fieldLayouts:
           -
             elementCondition: null
             fieldUid: 0b2826e6-4b3f-47c6-a726-df613dcdd607 # Text
+            handle: null
+            includeInCards: false
             instructions: null
             label: null
+            providesThumbs: false
             required: true
             tip: null
             type: craft\fieldlayoutelements\CustomField
@@ -48,12 +54,12 @@ fieldLayouts:
         userCondition: null
 handle: default
 hasTitleField: true
+icon: null
 name: Default
-section: b9be22a6-6ef5-4a3a-9c8f-163610685d49 # Articles
+showSlugField: true
 showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
-sortOrder: 1
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site

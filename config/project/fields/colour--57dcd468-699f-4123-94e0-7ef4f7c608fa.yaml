@@ -1,6 +1,4 @@
 columnSuffix: hpitsupp
-contentColumnType: text
-fieldGroup: 326db6f6-0577-4166-a7f3-c64d1c0b1bc3 # Common
 handle: colour
 instructions: null
 name: Colour
@@ -9,7 +7,6 @@ settings:
   byteLimit: null
   charLimit: null
   code: false
-  columnType: null
   initialRows: 4
   multiline: false
   placeholder: null
