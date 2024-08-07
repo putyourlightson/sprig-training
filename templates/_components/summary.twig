@@ -55,29 +55,15 @@
     </div>
 </section>
 
+{#{% if sprig.isRequest %}#}
+{#    <script>#}
+{#        htmx.trigger('#products', 'refresh');#}
+{#        htmx.trigger('#cart', 'refresh');#}
+{#    </script>#}
+{#{% endif %}#}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+{#{% do sprig.triggerRefresh('#products') %}#}
+{#{% do sprig.triggerRefresh('#cart') %}#}
 
 {#{% do sprig.swapOob('#products', '_components/products') %}#}
 {#{% do sprig.swapOob('#cart', '_components/cart') %}#}
-{#{% if lineItems ?? false %}#}
-{#    {% do sprig.triggerRefresh('#products') %}#}
-{#    {% do sprig.triggerRefresh('#cart') %}#}
-{#{% endif %}#}

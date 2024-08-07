@@ -1,4 +1,4 @@
-dateModified: 1722870388
+dateModified: 1723050412
 elementSources:
   craft\commerce\elements\Product:
     -
@@ -39,9 +39,11 @@ graphql:
 meta:
   __names__:
     0b2826e6-4b3f-47c6-a726-df613dcdd607: Text # Text
+    9f856ae6-ab6e-419d-a0b1-2d556edc989a: Products # Products
     57dcd468-699f-4123-94e0-7ef4f7c608fa: Colour # Colour
     76ceebcf-6e96-4ed0-8792-e33851d9b8f1: Products # Products
     78d705b6-3fee-471b-9451-847caf510cde: Dummy # Dummy
+    58049fbf-27a3-412b-afb4-8810f6d9de2e: Category # Category
     63787053-c58d-42f3-af9c-632e7dc01f35: Images # Images
     a5992712-f8e7-40f9-a127-2b87b50eb960: New # New
     b9be22a6-6ef5-4a3a-9c8f-163610685d49: Articles # Articles
@@ -64,5 +66,5 @@ system:
   edition: pro
   live: true
   name: 'Sprig Training'
-  schemaVersion: 5.0.0.21
+  schemaVersion: 5.3.0.2
   timeZone: America/Los_Angeles

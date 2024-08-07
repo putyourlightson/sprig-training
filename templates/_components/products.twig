@@ -8,29 +8,43 @@
 {% endif %}
 {% set variantIds = variantQuery.ids() %}
 
-<div s-replace="#results" class="flex justify-center pb-4 mb-4 border-b">
+{% set categories = craft.categories
+    .group('products')
+    .level(1)
+    .all()
+%}
+
+<div class="flex pb-4 mb-4 border-b">
+    <select sprig name="categoryId" class="form-select mr-3 rounded-md border border-gray-300 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-sky-600 focus:outline-none focus:ring-1 focus:ring-sky-600 sm:text-md">
+        <option value="">All categories</option>
+        {% for category in categories %}
+            <option value="{{ category.id }}" {{ categoryId ?? null == category.id ? 'selected' }}>
+                {{ category.title }}
+            </option>
+        {% endfor %}
+    </select>
     <select sprig name="price" class="form-select mr-3 rounded-md border border-gray-300 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-sky-600 focus:outline-none focus:ring-1 focus:ring-sky-600 sm:text-md">
         <option value="">All prices</option>
-        <option value="20">< $20</option>
-        <option value="50">< $50</option>
-        <option value="100">< $100</option>
+        <option value="20" {{ price ?? null == 20 ? 'selected' }}>< $20</option>
+        <option value="50" {{ price ?? null == 50 ? 'selected' }}>< $50</option>
+        <option value="100" {{ price ?? null == 100 ? 'selected' }}>< $100</option>
     </select>
     <select sprig name="available" class="form-select mr-3 rounded-md border border-gray-300 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-sky-600 focus:outline-none focus:ring-1 focus:ring-sky-600 sm:text-md">
         <option value="">All availability</option>
-        <option value="1">Only available</option>
+        <option value="1" {{ available ?? null == 1 ? 'selected' }}>Only available</option>
     </select>
 </div>
 <section id="results" aria-labelledby="cart-heading" class="min-w-[42rem]">
     <h2 id="cart-heading" class="sr-only">Items in your shopping cart</h2>
-    <ul role="list" class="space-y-4">
+    <div class="space-y-4">
         {% if variantIds|length %}
             {% for variantId in variantIds %}
                 {{ sprig('_components/product', { variantId: variantId }) }}
             {% endfor %}
         {% else %}
-            <li class="flex p-4">
+            <div class="flex p-4">
                 No products found
-            </li>
+            </div>
         {% endif %}
-    </ul>
+    </div>
 </section>

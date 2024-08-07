@@ -1,4 +1,5 @@
 descriptionFormat: '{product.title} - {title}'
+enableVersioning: false
 handle: products
 hasDimensions: false
 hasProductTitleField: true
@@ -16,6 +17,7 @@ productFieldLayouts:
             autocomplete: false
             autocorrect: true
             class: null
+            dateAdded: '2024-08-07T17:05:11+00:00'
             disabled: false
             elementCondition: null
             id: null
@@ -41,6 +43,7 @@ productFieldLayouts:
             warning: null
             width: 100
           -
+            dateAdded: '2024-08-07T17:05:11+00:00'
             elementCondition: null
             fieldUid: eb6c8b6c-8a32-42a9-9ab0-97414e63933d # Image
             handle: null
@@ -56,7 +59,24 @@ productFieldLayouts:
             warning: null
             width: 100
           -
+            dateAdded: '2024-08-07T17:06:52+00:00'
+            elementCondition: null
+            fieldUid: 58049fbf-27a3-412b-afb4-8810f6d9de2e # Category
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e0fedb28-0931-40a6-806f-fb04715be28d
+            userCondition: null
+            warning: null
+            width: 100
+          -
             attribute: variants
+            dateAdded: '2024-08-07T17:05:11+00:00'
             elementCondition: null
             id: null
             includeInCards: false
@@ -91,6 +111,7 @@ variantFieldLayouts:
         elements:
           -
             attribute: sku
+            dateAdded: '2024-08-07T17:05:11+00:00'
             elementCondition: null
             id: null
             includeInCards: false
@@ -104,12 +125,13 @@ variantFieldLayouts:
             tip: null
             translatable: false
             type: craft\commerce\fieldlayoutelements\PurchasableSkuField
-            uid: fa34f245-5678-45b8-bc07-7e56f6cad4b7
+            uid: 6869f748-80d0-4e9d-8596-d3083ebe8bb0
             userCondition: null
             warning: null
             width: 100
           -
             attribute: price
+            dateAdded: '2024-08-07T17:05:11+00:00'
             elementCondition: null
             id: null
             includeInCards: false
@@ -123,12 +145,13 @@ variantFieldLayouts:
             tip: null
             translatable: false
             type: craft\commerce\fieldlayoutelements\PurchasablePriceField
-            uid: 26dc65b4-55ec-4c82-a202-868d61548d19
+            uid: c7f6e0bd-153b-48e2-b16a-02b7831d597d
             userCondition: null
             warning: null
             width: 100
           -
             attribute: stock
+            dateAdded: '2024-08-07T17:05:11+00:00'
             elementCondition: null
             id: null
             includeInCards: false
@@ -142,12 +165,13 @@ variantFieldLayouts:
             tip: null
             translatable: false
             type: craft\commerce\fieldlayoutelements\PurchasableStockField
-            uid: 7be64c0d-5413-432d-8589-472f93ea7fa2
+            uid: db54b963-1a5a-4314-92d0-3d694a53f508
             userCondition: null
             warning: null
             width: 100
           -
             attribute: availableForPurchase
+            dateAdded: '2024-08-07T17:05:11+00:00'
             elementCondition: null
             id: null
             includeInCards: false
@@ -161,12 +185,13 @@ variantFieldLayouts:
             tip: null
             translatable: false
             type: craft\commerce\fieldlayoutelements\PurchasableAvailableForPurchaseField
-            uid: 174ae0a4-5d74-48d6-9dfb-a25cbc566824
+            uid: 0e17c5bd-8c35-499a-9fd5-b95ab7a9e7f3
             userCondition: null
             warning: null
             width: 100
           -
             attribute: allowedQty
+            dateAdded: '2024-08-07T17:05:11+00:00'
             elementCondition: null
             id: null
             includeInCards: false
@@ -180,12 +205,13 @@ variantFieldLayouts:
             tip: null
             translatable: false
             type: craft\commerce\fieldlayoutelements\PurchasableAllowedQtyField
-            uid: d4f208a8-910a-4d09-802c-68dd89948ea1
+            uid: c494ea11-e26b-406f-b5dc-743d46d54339
             userCondition: null
             warning: null
             width: 100
           -
             attribute: freeShipping
+            dateAdded: '2024-08-07T17:05:11+00:00'
             elementCondition: null
             id: null
             includeInCards: false
@@ -199,12 +225,13 @@ variantFieldLayouts:
             tip: null
             translatable: false
             type: craft\commerce\fieldlayoutelements\PurchasableFreeShippingField
-            uid: 3a793ad1-5b94-42c5-bad2-bdda3a26c91a
+            uid: d54be4c1-f121-49e5-9cf5-78d6ec5977d2
             userCondition: null
             warning: null
             width: 100
           -
             attribute: promotable
+            dateAdded: '2024-08-07T17:05:11+00:00'
             elementCondition: null
             id: null
             includeInCards: false
@@ -218,12 +245,13 @@ variantFieldLayouts:
             tip: null
             translatable: false
             type: craft\commerce\fieldlayoutelements\PurchasablePromotableField
-            uid: aa1e364c-3840-49e1-95cd-a7226fb3ffdb
+            uid: 2553463e-6793-460a-89e5-55fc16aaf902
             userCondition: null
             warning: null
             width: 100
           -
             attribute: dimensions
+            dateAdded: '2024-08-07T17:05:11+00:00'
             elementCondition: null
             id: null
             includeInCards: false
@@ -237,12 +265,13 @@ variantFieldLayouts:
             tip: null
             translatable: false
             type: craft\commerce\fieldlayoutelements\PurchasableDimensionsField
-            uid: 140985db-67a1-4173-b445-fd6e0b9dd11e
+            uid: 535ec188-4446-425e-9432-1da842424e7c
             userCondition: null
             warning: null
             width: 100
           -
             attribute: weight
+            dateAdded: '2024-08-07T17:05:11+00:00'
             elementCondition: null
             id: null
             includeInCards: false
@@ -256,7 +285,7 @@ variantFieldLayouts:
             tip: null
             translatable: false
             type: craft\commerce\fieldlayoutelements\PurchasableWeightField
-            uid: a77326e1-9040-40da-b902-c1727804eb24
+            uid: 38027ea8-565d-4fa2-a9fd-78f0325c6e6d
             userCondition: null
             warning: null
             width: 100
@@ -265,6 +294,7 @@ variantFieldLayouts:
             autocomplete: false
             autocorrect: true
             class: null
+            dateAdded: '2024-08-07T17:05:11+00:00'
             disabled: false
             elementCondition: null
             id: null
@@ -290,6 +320,7 @@ variantFieldLayouts:
             warning: null
             width: 100
           -
+            dateAdded: '2024-08-07T17:05:11+00:00'
             elementCondition: null
             fieldUid: 57dcd468-699f-4123-94e0-7ef4f7c608fa # Colour
             handle: null

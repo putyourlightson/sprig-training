@@ -7,7 +7,7 @@
     .one()
 %}
 
-<li class="product flex p-2">
+<div class="product flex p-2">
     <div class="flex-shrink-0">
         {% set image = variant.owner.image.eagerly().one() %}
         {% if image %}
@@ -76,31 +76,16 @@
             {% endif %}
         </div>
     </div>
-</li>
+</div>
 
+{#{% if sprig.isRequest %}#}
+{#    <script>#}
+{#        htmx.trigger('#summary', 'refresh');#}
+{#        htmx.trigger('#cart', 'refresh');#}
+{#    </script>#}
+{#{% endif %}#}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+{#{% do sprig.triggerRefresh('#summary') %}#}
+{#{% do sprig.triggerRefresh('#cart') %}#}
 
 {#{% do sprig.swapOob('#summary', '_components/summary') %}#}
-{#{% do sprig.swapOob('#cart', '_components/cart') %}#}
-{#{% if purchasableId ?? false %}#}
-{#    {% do sprig.triggerRefresh('#summary') %}#}
-{#    {% do sprig.triggerRefresh('#cart') %}#}
-{#{% endif %}#}
