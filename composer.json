@@ -2,8 +2,7 @@
   "require": {
     "craftcms/cms": "^5.0",
     "craftcms/commerce": "^5.0",
-    "putyourlightson/craft-sprig": "^3.0",
-    "putyourlightson/craft-sprig-core": "dev-develop as 3.3.0",
+    "putyourlightson/craft-sprig": "^3.3",
     "vlucas/phpdotenv": "^5.4.0"
   },
   "require-dev": {

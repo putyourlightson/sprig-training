@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "605fa96c30ee4d67f6fdf801d90cc9d5",
+    "content-hash": "4997f852344f8e1f1a8aad42b8378661",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -3564,23 +3564,23 @@
         },
         {
             "name": "putyourlightson/craft-sprig",
-            "version": "3.2.1",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/putyourlightson/craft-sprig.git",
-                "reference": "ec1f3802e6cb81b920ff16f0e8d8d3f623767695"
+                "reference": "6c655bf5d299055b75c3348b47e2fd1ad1cfe58c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/putyourlightson/craft-sprig/zipball/ec1f3802e6cb81b920ff16f0e8d8d3f623767695",
-                "reference": "ec1f3802e6cb81b920ff16f0e8d8d3f623767695",
+                "url": "https://api.github.com/repos/putyourlightson/craft-sprig/zipball/6c655bf5d299055b75c3348b47e2fd1ad1cfe58c",
+                "reference": "6c655bf5d299055b75c3348b47e2fd1ad1cfe58c",
                 "shasum": ""
             },
             "require": {
                 "craftcms/cms": "^5.0",
                 "nystudio107/craft-code-editor": "^1.0",
                 "php": "^8.2",
-                "putyourlightson/craft-sprig-core": "^3.2.1"
+                "putyourlightson/craft-sprig-core": "^3.3.0"
             },
             "require-dev": {
                 "craftcms/ecs": "dev-main",
@@ -3617,20 +3617,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-08-06T07:30:15+00:00"
+            "time": "2024-08-08T11:40:23+00:00"
         },
         {
             "name": "putyourlightson/craft-sprig-core",
-            "version": "dev-develop",
+            "version": "3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/putyourlightson/craft-sprig-core.git",
-                "reference": "e69df67ba059686618c60973d3e414485a7dc5ab"
+                "reference": "e9011bcb596b507eb706c014bd93a85c5e2b1403"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/putyourlightson/craft-sprig-core/zipball/e69df67ba059686618c60973d3e414485a7dc5ab",
-                "reference": "e69df67ba059686618c60973d3e414485a7dc5ab",
+                "url": "https://api.github.com/repos/putyourlightson/craft-sprig-core/zipball/e9011bcb596b507eb706c014bd93a85c5e2b1403",
+                "reference": "e9011bcb596b507eb706c014bd93a85c5e2b1403",
                 "shasum": ""
             },
             "require": {
@@ -3644,7 +3644,6 @@
                 "putyourlightson/craft-sprig": "^3.0",
                 "vlucas/phpdotenv": "^5.4.1"
             },
-            "default-branch": true,
             "type": "craft-module",
             "autoload": {
                 "psr-4": {
@@ -3661,7 +3660,7 @@
                 "issues": "https://github.com/putyourlightson/craft-sprig-core/issues",
                 "source": "https://github.com/putyourlightson/craft-sprig-core"
             },
-            "time": "2024-08-07T19:43:53+00:00"
+            "time": "2024-08-08T11:47:54+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -8587,18 +8586,9 @@
             "time": "2022-09-04T10:37:52+00:00"
         }
     ],
-    "aliases": [
-        {
-            "package": "putyourlightson/craft-sprig-core",
-            "version": "dev-develop",
-            "alias": "3.3.0",
-            "alias_normalized": "3.3.0.0"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "putyourlightson/craft-sprig-core": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
