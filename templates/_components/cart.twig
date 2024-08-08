@@ -1,3 +1,6 @@
+{# @var cart \craft\commerce\elements\Order #}
+{% set cart = craft.commerce.carts.cart %}
+
 <section aria-labelledby="summary-heading" class="min-w-64 lg:col-span-5 ">
     <div>
         <div class="group -m-2 flex items-center justify-end p-2">
@@ -7,7 +10,7 @@
                 </svg>
                 <span class="ml-2 text-lg font-medium text-gray-700 group-hover:text-gray-800">
                     <span id="totalQty">
-                        {{ craft.commerce.carts.cart.totalQty }}
+                        {{ cart.totalQty }}
                     </span>
                 </span>
                 <span class="sr-only">items in cart, view bag</span>
