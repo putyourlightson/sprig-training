@@ -8,20 +8,47 @@
 {% endif %}
 {% set variantIds = variantQuery.ids() %}
 
-{#{% set categories = craft.categories#}
-{#    .group('products')#}
-{#    .all()#}
-{#%}#}
+{% set categoriesLevel1 = craft.categories
+    .group('products')
+    .level(1)
+    .all()
+%}
+{% if categoryLevel1Id ?? null %}
+    {% set categoriesLevel2 = craft.categories
+        .group('products')
+        .level(2)
+        .descendantOf(categoryLevel1Id)
+        .all()
+    %}
+{% endif %}
 
 <div class="flex pb-4 mb-4 border-b">
-{#    <select sprig name="categoryId" class="form-select mr-3 rounded-md border border-gray-300 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-sky-600 focus:outline-none focus:ring-1 focus:ring-sky-600 sm:text-md">#}
-{#        <option value="">All categories</option>#}
-{#        {% for category in categories %}#}
-{#            <option value="{{ category.id }}" {{ categoryId ?? null == category.id ? 'selected' }}>#}
-{#                {{ category.title }}#}
-{#            </option>#}
-{#        {% endfor %}#}
-{#    </select>#}
+    <select sprig name="categoryLevel1Id" class="form-select mr-3 rounded-md border border-gray-300 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-sky-600 focus:outline-none focus:ring-1 focus:ring-sky-600 sm:text-md">
+        <option value="">All categories</option>
+        {% for category in categoriesLevel1 %}
+            {% set productCount = craft.products.relatedTo(category).count() %}
+            {% if productCount > 0 %}
+                <option value="{{ category.id }}" {{ categoryLevel1Id ?? null == category.id ? 'selected' }}>
+                    {{ category.title }}
+                    ({{ productCount }})
+                </option>
+            {% endif %}
+        {% endfor %}
+    </select>
+    {% if categoryLevel1Id ?? null %}
+        <select sprig name="categoryLevel2Id" class="form-select mr-3 rounded-md border border-gray-300 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-sky-600 focus:outline-none focus:ring-1 focus:ring-sky-600 sm:text-md">
+            <option value="">All categories</option>
+            {% for category in categoriesLevel2 %}
+                {% set productCount = craft.products.relatedTo(category).count() %}
+                {% if productCount > 0 %}
+                    <option value="{{ category.id }}" {{ categoryLevel2Id ?? null == category.id ? 'selected' }}>
+                        {{ category.title }}
+                        ({{ productCount }})
+                    </option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    {% endif %}
     <select sprig name="price" class="form-select mr-3 rounded-md border border-gray-300 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-sky-600 focus:outline-none focus:ring-1 focus:ring-sky-600 sm:text-md">
         <option value="">All prices</option>
         <option value="20" {{ price ?? null == 20 ? 'selected' }}>< $20</option>

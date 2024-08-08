@@ -65,8 +65,8 @@
 {#{% do sprig.triggerRefresh('#products') %}#}
 {#{% do sprig.triggerRefresh('#cart') %}#}
 
-{#{% do sprig.swapOob('#products', '_components/products') %}#}
-{#{% do sprig.swapOob('#cart', '_components/cart') %}#}
+{% do sprig.swapOob('#products', '_components/products') %}
+{% do sprig.swapOob('#totalQty', cart.totalQty) %}
 
 {#{% if sprig.isInclude %}#}
 {#    <section aria-labelledby="summary-heading" class="min-w-80">#}
