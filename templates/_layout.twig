@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Sprig Training</title>
+    <title>Sprig Livestream</title>
     <link rel="stylesheet" href="/src/css/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -14,16 +14,3 @@
     defaultSettleDelay: 0,
     requestClass: 'loading',
 }) %}
-
-{% js %}
-    htmx.on('keydown', (event) => {
-      if (event.code === "ShiftLeft") {
-          htmx.addClass('body', 'highlight');
-      }
-    });
-    htmx.on('keyup', (event) => {
-      if (event.code === "ShiftLeft") {
-          htmx.removeClass('body', 'highlight');
-      }
-    });
-{% endjs %}
